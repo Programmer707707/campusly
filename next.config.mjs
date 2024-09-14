@@ -4,7 +4,7 @@ const nextConfig = {
         {
         domains: ['images.pexels.com'], // Add the hostname of your external image source
     },
-     eslint: {
+    eslint: {
         ignoreDuringBuilds: true,
     },
 };
