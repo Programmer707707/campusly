@@ -9,7 +9,7 @@ const HomePage = () => {
      <Hero/>
      
      <Suspense fallback={<LoadingContainer/>}>
-      <FeaturedProducts/>
+      {/* <FeaturedProducts/> */}
      </Suspense>
     
     </div>

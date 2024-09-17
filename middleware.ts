@@ -1,12 +1,22 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
 
-const isPublicRoute = createRouteMatcher(['/', '/products(.*)', '/about'])
+const isPublicRoute = createRouteMatcher(['/']);
+//Here I am protecting only admin's sales page and other two pages are open if i want to protect all of them 
+//I should use '/admin(.*)'
+//const isAdminRoute = createRouteMatcher(['/admin(.*)'])
 
 export default clerkMiddleware((auth, request) =>{
-    if (!isPublicRoute(request)) {
-        auth().protect()
-      }
+  
+  // const isAdminUser = auth().userId === process.env.ADMIN_USER_ID;
+  // if(isAdminRoute(request) && !isAdminUser){
+  //   return NextResponse.redirect(new URL('/', request.url));
+  // }
+
+  if (!isPublicRoute(request)) {
+      auth().protect()
+  }
 });
 
 export const config = {

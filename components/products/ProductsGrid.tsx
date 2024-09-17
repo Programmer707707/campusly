@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import FavoriteToggleButton from "./FavoriteToggleButton";
+import QuickCheck from "./QuckCheck";
 
 const ProductsGrid = ({products} : {products: Product[]}) => {
   return (
@@ -30,10 +31,6 @@ const ProductsGrid = ({products} : {products: Product[]}) => {
               </CardContent>
             </Card>
           </Link>
-
-          <div className="absolute top-7 right-7 z-5">
-            <FavoriteToggleButton productId={productId} />
-          </div>
         </article>
       })}
     </div>

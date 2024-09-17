@@ -20,7 +20,7 @@ const carouselImages = [hero1, hero2, hero3, hero4];
 
 const HeroCarousel = () => {
   return (
-    <Carousel className="w-full max-w-lg max-h-50">
+    <Carousel className="w-full max-w-lg max-h-50 mx-auto">
       <CarouselContent>
           {carouselImages.map((image, index) => {
             return (

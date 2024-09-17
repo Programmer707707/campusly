@@ -1,8 +1,22 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: 
-        {
-        domains: ['images.pexels.com'], // Add the hostname of your external image source
+    {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'images.pexels.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'gobfftjlmfxdnofpdkhg.supabase.co',
+            },
+            {
+                protocol: 'https',
+                hostname: 'img.clerk.com',
+            }
+        ]
+        
     },
     eslint: {
         ignoreDuringBuilds: true,

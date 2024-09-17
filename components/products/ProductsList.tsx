@@ -37,9 +37,6 @@ const ProductsList = ({products} : {products: Product[]}) => {
                     {dollarsAmount}
                   </p>
                 </CardContent>
-                <div className='absolute bottom-8 right-8 z-5'>
-                  <FavoriteToggleButton productId={productId} />
-                </div>
               </Card>
             </Link>
           </article>

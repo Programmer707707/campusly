@@ -10,10 +10,14 @@ import { Button } from '../ui/button';
 import { links } from '@/utils/links';
 import UserIcon from './UserIcon';
 import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs';
-import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu';
 import SignOutLink from './SignOutLink';
+import { Separator } from '../ui/separator';
+import {auth} from "@clerk/nextjs/server";
+
 
 const LinksDropdown = () => {
+  const {userId} = auth();
+  const isAdmin = userId === process.env.ADMIN_USER_ID;
   return (
     <DropdownMenu>
       {/* Main button of dropdown menu */}
@@ -31,13 +35,13 @@ const LinksDropdown = () => {
         <SignedOut>
           <DropdownMenuItem>
           <SignInButton mode='modal'>
-            <button className='w-full text-left'>LogIn</button>
+            <Button className='w-full text-left'>LogIn</Button>
           </SignInButton>
           </DropdownMenuItem>
-          <DropdownMenuSeparator/>
+          <Separator/>
           <DropdownMenuItem>
           <SignUpButton mode='modal'>
-            <button className='w-full text-left'>Register</button>
+            <Button className='w-full text-left'>Register</Button>
           </SignUpButton>
           </DropdownMenuItem>
         </SignedOut>
@@ -45,6 +49,8 @@ const LinksDropdown = () => {
         {/* If user loggedIn we show full dropdown menu */}
         <SignedIn>
         {links.map((link)=> {
+          //And here we are returning null when the label of the link is Dashboard and the logged user is not an Admin
+          if(link.label === 'dashboard' && !isAdmin) return null;
           return <DropdownMenuItem key={link.href}>
             <Link href={link.href} className='capitalize  w-full'>
               {link.label}
@@ -52,7 +58,7 @@ const LinksDropdown = () => {
           </DropdownMenuItem>
         })}
 
-        <DropdownMenuSeparator/>
+          <Separator/>
         <DropdownMenuItem>
           <SignOutLink/>
         </DropdownMenuItem>

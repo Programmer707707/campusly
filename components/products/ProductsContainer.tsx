@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ProductsGrid from './ProductsGrid';
 import ProductsList from './ProductsList';
 import { LuLayoutGrid, LuList } from 'react-icons/lu';
@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { fetchAllProducts } from '@/utils/actions';
 import Link from 'next/link';
+import NavSearch from '../navbar/NavSearch';
 
 async function ProductsContainer({layout, search}: {layout: string, search: string}){
   const products = await fetchAllProducts({search});
@@ -19,6 +20,12 @@ async function ProductsContainer({layout, search}: {layout: string, search: stri
         <h4 className='font-medium text-lg'>
           {totalProducts} product{totalProducts>1 && 's'}
         </h4>
+
+        <div>
+        <Suspense>
+           <NavSearch />
+        </Suspense>
+        </div>
 
         <div className='flex gap-x-4'>
           <Button variant={layout === 'grid' ? 'default' : 'ghost'} size={'icon'} asChild>
