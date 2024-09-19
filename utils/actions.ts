@@ -9,6 +9,8 @@ import { imageSchema, productSchema, reviewSchema, validateWithZodSchema } from 
 import { revalidatePath } from "next/cache";
 import {Resend} from 'resend';
 import {z} from 'zod';
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 
 
 //getting user 
@@ -214,7 +216,6 @@ export const updateProductImageAction = async(prevState: any, formData: FormData
 
 
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendMessage = async (prevState: {message: string}, formData: FormData) => {
     const scheme = z.object({
