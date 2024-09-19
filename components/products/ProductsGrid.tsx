@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import FavoriteToggleButton from "./FavoriteToggleButton";
-import QuickCheck from "./QuckCheck";
 
 const ProductsGrid = ({products} : {products: Product[]}) => {
   return (

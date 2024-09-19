@@ -7,7 +7,6 @@ import ShareButton from '@/components/single-product/ShareButton';
 import ProductReview from '@/components/reviews/ProductReview';
 import SubmitReview from '@/components/reviews/SubmitReview';
 import ProductRating from '@/components/single-product/ProductRating';
-import { Button } from '@/components/ui/button';
 
 
 async function SingleProductPage({ params }: { params: { id: string } }) {
@@ -42,8 +41,7 @@ async function SingleProductPage({ params }: { params: { id: string } }) {
             {dollarsAmount}
           </p>
           <p className='mt-6 leading-8 text-muted-foreground'>{description}</p>
-          {/* <AddToCart productId={params.id} /> */}
-          <Button className='capitalize mt-8'>Buy now</Button>
+          <AddToCart productId={params.id} />
         </div>
       </div>
       <ProductReview productId={params.id}/>

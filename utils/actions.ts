@@ -4,7 +4,7 @@
 import { redirect } from "next/navigation";
 import { deleteImage, uploadImage } from './supabase';
 import db from "./db";
-import { currentUser, User } from "@clerk/nextjs/server";
+import { auth, currentUser, User } from "@clerk/nextjs/server";
 import { imageSchema, productSchema, reviewSchema, validateWithZodSchema } from "./schema";
 import { revalidatePath } from "next/cache";
 import {Resend} from 'resend';
@@ -327,3 +327,37 @@ export const fetchProductRating = async (productId: string) => {
     };
   };
   
+
+
+// Add to cart part
+
+export const fetchCartItems = async () => {
+    const {userId} = auth();
+    const cart = await db.cart.findFirst({
+        where: {
+            clerkId: userId?? '',
+        },
+        select:{
+            numItemsInCart: true,
+        }
+    });
+    return cart?.numItemsInCart || 0;
+}
+
+const fetchProduct = async () => {};
+
+export const fetchOrCreateCart = async () => {};
+
+const updateOrCreateCartItem = async () => {};
+
+export const updateCart = async () => {};
+
+export const addToCartAction = async () => {};
+
+export const removeCartItemAction = async () => {};
+
+export const updateCartItemAction = async () => {};
+
+
+
+
